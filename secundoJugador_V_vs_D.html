@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Example 01.02 - First Scene</title>
+    <script type="text/javascript" src="../libreriaNueva/libreriasThree.js-master/Jquery.js"></script>
+    <script type="text/javascript" src="three.js"></script>
+    <script type="text/javascript" src="../three.js-master/examples/js/loaders/GLTFLoader.js"></script>
+    <script type="text/javascript" src="../libreriaNueva/libreriasThree.js-master/MTLLoader.js"></script>
+    <script type="text/javascript" src="../libreriaNueva/libreriasThree.js-master/FBXLoader.js"></script>
+    <script type="text/javascript" src="../libreriaNueva/libreriasThree.js-master/OBJLoader.js"></script>
+    <script type="text/javascript" src="../libreriaNueva/libreriasThree.js-master/inflate.min.js"></script>
+    <script type="text/javascript" src="../three.js-master/examples/js/controls/OrbitControls.js"></script>
+    <script type="text/javascript" src="Herramientas/ControlesDeOrbita.js"></script>
+
+<script type="text/javascript">
+    const clock = new THREE.Clock();
+
+const deltaTime = clock.getDelta();
+ var clockIA = new THREE.Clock();
+    clockIA.start()
+
+    $(document).ready(function(){
+  
+
+
+  console.log("ready");
+
+
+
+    
+  });
+</script>
+
+
+
+
+
+    <style>
+        body {
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Div which will hold the Output -->
+<div id="WebGL-output">
+</div>
+
+
+<!-- Javascript code that runs our Three.js examples -->
+<script type="text/javascript">
+
+
+var  secondPlayerMat = new THREE.MeshLambertMaterial( {color:0x0F23113});
+
+    var arregloVirus =[]   
+   var arregloDoc1 = [];
+   var arregloDoc2 = [];
+   var arregloDoc3 = []
+
+var mixerVirus;   
+var mixerDocWalk1;
+var mixerDocWalk2;
+var mixerDocWalk3
+var mixerDocAttack;
+var material2;
+var matLevel
+
+let hemiLight,spotLight;
+
+
+// enemigos 
+var enemigo1
+var enemigo2
+var enemigo3
+
+var secondPlayerObj
+var playerObj
+var levelObj 
+
+    // once everything is loaded, we run our Three.js stuff.
+    function init() {
+
+
+        
+        const escenarioMat = new THREE.MeshLambertMaterial({color: 0xE05E42});
+       
+        var scene = new THREE.Scene();
+        scene.background = new THREE.Color( 0xdddddd);
+        
+        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        
+        spotLight = new THREE.SpotLight(0xffa95c,4);
+        spotLight.castShadow = true;
+        spotLight.shadow.bias = -0.0001;
+        spotLight.shadow.mapSize.width = 1024*4;
+        spotLight.shadow.mapSize.height = 1024*4;
+        scene.add(spotLight);
+
+        hemiLight = new THREE.HemisphereLight(0xffeeb1,0x080820,4)
+        scene.add(hemiLight);
+
+    
+        var renderer = new THREE.WebGLRenderer();
+     
+        var controls = initControles(camera,renderer);
+        controls.update();
+  
+       
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.toneMapping = THREE.ReinhardToneMapping;
+        renderer.toneMappingExposure = 2.3;
+    document.getElementById("WebGL-output").appendChild(renderer.domElement);
+        // show axes in the screen
+        var axes = new THREE.AxisHelper(20);
+        scene.add(axes);
+
+        
+       
+        
+
+        camera.position.x = 10;
+        camera.position.y = 70;
+        camera.position.z = 0;
+        camera.lookAt(scene.position);
+
+
+
+// clips.forEach(function(clip){
+//     mixer.clipAction(clip).play();
+// });
+
+
+         // imoport FBX
+
+//         var mtlLoader = new THREE.MTLLoader()
+// mtlLoader.load(
+//     'modelos/docMat.mtl',
+//     (materials) => {
+//         materials.preload()
+//         var objLoader = new THREE.OBJLoader()
+//         objLoader.setMaterials(materials)
+//         objLoader.load(
+//             'modelos/doc.obj',
+//             (object) => {
+                
+//                 scene.add(object)
+//             },
+//             (xhr) => {
+//                 console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+//             },
+//             (error) => {
+//                 console.log('An error happened')
+//             }
+//         )
+//     },
+//     (xhr) => {
+//         console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+//     },
+//     (error) => {
+//         console.log('An error happened')
+//     }
+// )
+
+
+
+
+                //
+
+
+// var OBJFile = 'modelos/escenario/levelGraficas.obj';
+// var MTLFile = 'modelos/escenario/levelGraficas.mtl';
+// var JPGFile = 'texturas/escenario/level.jpg';
+
+// new THREE.MTLLoader()
+// .load(MTLFile, function (materials) {
+//     materials.preload();
+//     new THREE.OBJLoader()
+//         .setMaterials(materials)
+//         .load(OBJFile, function (object) {
+//             var texture = new THREE.TextureLoader().load(JPGFile);
+
+//             object.traverse(function (child) {   // aka setTexture
+//                 if (child instanceof THREE.Mesh) {
+//                     child.material.map = texture;
+
+//                 }
+//             });
+//             scene.add(object);
+//         });
+// });
+
+
+// var texture = new THREE.TextureLoader();
+// texture.load("texturas/escenario/level.jpg",function(text){
+
+
+
+matLevel = new THREE.MeshLambertMaterial({color: 0x08b8c7a })
+OBJLoader("modelos/escenario/levelGraficas.obj",matLevel);
+
+playerMat = new THREE.MeshLambertMaterial({color: 0x02d572c});
+
+
+      
+objLoader = new THREE.OBJLoader();
+objLoader.load("modelos/virus.obj",function(model){
+    const times = [0,3,6]
+    const values = [0,0,10,0,0,10,0,0,10]
+    const values2 = [0,0,0,0,0,0,0,0,0]
+    const positionFk = new THREE.VectorKeyframeTrack(".position",times,values)
+    const positionFk2 = new THREE.VectorKeyframeTrack(".position",times,values2)
+
+    const clipVirus = new THREE.AnimationClip("der",-1,[positionFk])
+    const clipVirus2 = new THREE.AnimationClip("izq",-1,[positionFk2])
+    mixerVirus = new THREE.AnimationMixer(model);
+            arregloVirus.push(mixerVirus);
+            const clip = clipVirus
+           const action2 = mixerVirus.clipAction(clipVirus2)
+            const action = mixerVirus.clipAction(clip);
+            
+
+    model.traverse(function(child){
+        child.receiveShadow = true;
+        child.castShadow = true;
+        child.material = playerMat;
+        
+    });
+        
+        // model.rotation.x = 8
+        // model.rotation.z = 8
+
+
+        scene.add(model);
+        playerObj = model
+        console.log(playerObj)
+        
+        
+  });
+
+objLoader = new THREE.OBJLoader();
+objLoader.load("modelos/virus.obj",function(model){
+    const times = [0,3,6]
+    const values = [0,0,10,0,0,10,0,0,10]
+    const values2 = [0,0,0,0,0,0,0,0,0]
+    const positionFk = new THREE.VectorKeyframeTrack(".position",times,values)
+    const positionFk2 = new THREE.VectorKeyframeTrack(".position",times,values2)
+
+    const clipVirus = new THREE.AnimationClip("der",-1,[positionFk])
+    const clipVirus2 = new THREE.AnimationClip("izq",-1,[positionFk2])
+    mixerVirus = new THREE.AnimationMixer(model);
+            arregloVirus.push(mixerVirus);
+            const clip = clipVirus
+           const action2 = mixerVirus.clipAction(clipVirus2)
+            const action = mixerVirus.clipAction(clip);
+            
+
+    model.traverse(function(child){
+        child.receiveShadow = true;
+        child.castShadow = true;
+        child.material = secondPlayerMat;
+        
+    });
+        
+        // model.rotation.x = 8
+        // model.rotation.z = 8
+
+        model.position.set(0,0,10)
+        scene.add(model);
+        secondPlayerObj = model
+        
+        
+  });
+
+
+
+
+
+// modelMat = new THREE.MTLLoader();
+// modelMat.load('modelos/doctores/doctorObj.mtl',function(material){
+//     material.preload();
+//     loader = new THREE.FBXLoader();
+//     loader.load("modelos/doctores/caminar.fbx",function(personaje){
+//         personaje.position.x = 0;
+//         personaje.position.y = 0;
+//         personaje.position.z = 0;
+//         personaje.scale.setScalar(0.021);
+
+//         personaje.traverse(function(child){
+//             child.castShadow = true;
+//             child.receiveShadow = true;
+//             child.material = material
+//         })
+//         scene.add(personaje);
+//     });
+// });
+// loaderFBX = new THREE.FBXLoader()
+// loaderFBX.load("modelos/doctores/animacionesExportadas/doctorFBX.fbx",function(personaje){
+//     personaje.scale.setScalar(0.058);
+    
+//     scene.add(personaje);
+// })
+
+
+// loader = new THREE.FBXLoader();
+// loader.load( "modelos/doctores/animacionesExportadas/docAllAnimattack.fbx", function ( personaje ) {
+//      mixer = new THREE.AnimationMixer(personaje);
+//      mixers.push(mixer);
+//      const clips = personaje.animations;
+//      const clip = THREE.AnimationClip.findByName(clips,"attack");
+//      console.log(clip);
+//     const action = mixer.clipAction(clip);
+//     action.play();
+//     console.log(action);
+//     personaje.position.x = 0;
+//      personaje.position.y = 0;
+//      personaje.position.z = 0;
+//      personaje.rotation.y  = 0;
+//      personaje.scale.setScalar(0.058);
+// personaje.traverse(function (child){
+//          if(child.isMesh){
+//              child.castShadow = true;
+//              child.receiveShadow = true;
+             
+
+            
+//          }
+//      });
+// scene.add( personaje );
+
+//  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                             // carga de modelos
+
+loader = new THREE.FBXLoader();
+            loader.load( "modelos/doctores/animacionesExportadas/docAllAnimwalk.fbx", function ( personaje ) {
+            mixerDocWalk1 = new THREE.AnimationMixer(personaje);
+            arregloDoc1.push(mixerDocWalk1);
+            const clips = personaje.animations;
+            const clip = THREE.AnimationClip.findByName(clips,"walk");
+           
+            const action = mixerDocWalk1.clipAction(clip);
+            action.setLoop(THREE.LoopRepeat)
+            action.play();
+           
+            personaje.position.x = 0;
+            personaje.position.y = 0;
+            personaje.position.z = 0;
+            personaje.rotation.y  = 0;
+            personaje.scale.setScalar(0.023);
+            personaje.traverse(function (child){
+         if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+            scene.add( personaje );
+            enemigo1 = personaje;
+
+        })
+
+            loader = new THREE.FBXLoader();
+            loader.load( "modelos/doctores/animacionesExportadas/docAllAnimwalk.fbx", function ( personaje ) {
+            mixerDocWalk2 = new THREE.AnimationMixer(personaje);
+            arregloDoc2.push(mixerDocWalk2);
+            const clips = personaje.animations;
+            const clip = THREE.AnimationClip.findByName(clips,"walk");
+            
+            const action = mixerDocWalk2.clipAction(clip);
+
+            action.play();
+           
+            personaje.position.x = 0;
+            personaje.position.y = 0;
+            personaje.position.z = 10;
+            personaje.rotation.y  = 0;
+            personaje.scale.setScalar(0.023);
+            personaje.traverse(function (child){
+         if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+            scene.add( personaje );
+            enemigo2 = personaje;
+
+           
+        })
+
+
+
+            loader = new THREE.FBXLoader();
+            loader.load( "modelos/doctores/animacionesExportadas/docAllAnimwalk.fbx", function ( personaje ) {
+            mixerDocWalk3 = new THREE.AnimationMixer(personaje);
+            arregloDoc3.push(mixerDocWalk3);
+            const clips = personaje.animations;
+            const clip = THREE.AnimationClip.findByName(clips,"walk");
+            
+            const action = mixerDocWalk3.clipAction(clip);
+
+            action.play();
+           
+            personaje.position.x = 0;
+            personaje.position.y = 0;
+            personaje.position.z = 15;
+            personaje.rotation.y  = 0;
+            personaje.scale.setScalar(0.023);
+            personaje.traverse(function (child){
+         if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+            scene.add( personaje );
+            enemigo3 = personaje;
+
+           
+        })
+
+
+
+            
+
+
+
+
+
+                                            // colisiones
+
+
+
+
+// IA Manager
+
+
+
+   function r(){
+    var random = (0, 5) 
+    random = Math.floor(Math.random() * (5 - 0)) + 0;
+    return random
+}
+        function getRandomRotation(){
+        var rotation = 0
+        rotation = r()
+        console.log(rotation)
+        switch(rotation){
+        case 1:
+        rotation = 0
+        break
+        case 2:
+        rotation = 90
+        break
+        case 3:
+        rotation = 135
+        break
+        case 4:
+        rotation = 180
+        break
+    }
+
+    return rotation
+
+
+}
+
+
+function DoctorIA(){
+    var clockIA = new THREE.Clock();
+    clockIA.start()
+    if(clockIA > 1.5){
+        console.log(true)
+    }
+}
+
+
+function timer(){
+     console.log(clockIA)
+    clockIA.elapsedTime = 0
+   
+
+}
+
+
+
+ 
+
+    
+        // render the scene
+        function render() {
+            
+                renderer.render(scene, camera);
+                spotLight.position.set(
+                    camera.position.x + 10,
+                    camera.position.y +10,
+                    camera.position.z + 10);
+                if (arregloDoc1.length > 0){
+                mixerDocWalk1.update(0.03);
+                mixerDocWalk2.update(0.04);
+
+
+            }if(arregloVirus.length > 0){
+                mixerVirus.update(0.04)
+                
+            }
+requestAnimationFrame(render);
+
+              
+               
+                
+            }
+                
+            render();
+
+
+
+document.addEventListener("keydown", onDocumentKeyDown, false);
+function onDocumentKeyDown(event) {
+    var keyCode = event.which;
+    if (keyCode == 87) {
+        console.log("w");
+        playerObj.position.x -= 0.4 
+        
+    } else if (keyCode == 83) {
+        console.log("s");
+         playerObj.position.x += 0.4
+    } else if (keyCode == 65) {
+        console.log("a");
+        playerObj.position.z += 0.4 
+    } else if (keyCode == 68) {
+        console.log("d");
+        playerObj.position.z -= 0.4
+    } else if (keyCode == 32) {
+        
+    }
+};
+
+document.addEventListener("keydown", onDocumentKeyDown, false);
+function onDocumentKeyDown(event) {
+    var keyCode = event.which;
+    if (keyCode == 87) {
+        console.log("w");
+        secondPlayerObj.position.x -= 0.4 
+        
+    } else if (keyCode == 83) {
+        console.log("s");
+         secondPlayerObj.position.x += 0.4
+    } else if (keyCode == 65) {
+        console.log("a");
+        secondPlayerObj.position.z += 0.4 
+    } else if (keyCode == 68) {
+        console.log("d");
+        secondPlayerObj.position.z -= 0.4
+    } else if (keyCode == 32) {
+        
+    }
+};
+
+
+document.addEventListener("keydown", onDocumentKeyDown2, false);
+function onDocumentKeyDown2(event) {
+    var keyCode = event.which;
+
+        
+    if (keyCode == 73) {
+        console.log("i");
+         playerObj.position.x += 0.4
+    } else if (keyCode == 74) {
+        console.log("j");
+        playerObj.position.z += 0.4 
+    } else if (keyCode == 75) {
+        console.log("k");
+        playerObj.position.z -= 0.4
+    } else if (keyCode == 76) {
+                console.log("l");
+                 playerObj.position.z -= 0.4
+
+        
+    }
+};
+
+
+
+
+
+
+        // crear objetos de juego.
+
+
+
+        function OBJLoader(path,material){
+objLoader = new THREE.OBJLoader();
+objLoader.load(path.toString(),function(model){
+    model.traverse(function(child){
+        child.receiveShadow = true;
+        child.castShadow = true;
+        child.material = material;
+
+        
+    });
+    model.scale.setScalar(1.5);
+        scene.add(model);
+        
+
+});
+
+            }
+        function player(x,y,z){
+            var playerGeo = new THREE.BoxGeometry(0.5,0.5,0.5);
+        var playerMat = new THREE.MeshLambertMaterial({color: 0x0E7ED11});
+       var player = new THREE.Mesh( playerGeo, playerMat);
+
+        player.position.x = x;
+        player.position.y = y;
+        player.position.z = z;
+
+        scene.add(player);
+        return player;
+        }
+
+       
+       
+
+
+        function moneda(x,y,z){
+
+       //  var coinGeo = new THREE.BoxGeometry(this.pA1,this.pA2,this.pA3);
+       // var coinMat = new THREE.MeshLambertMaterial({color: 0x01083F9});
+       // var coin = new THREE.Mesh( coinGeo, coinMat);
+
+       // coin.position.x = this.x;
+       // coin.position.y = this.y;
+       // coin.position.z = this.z;
+
+
+       var coinGeo = new THREE.BoxGeometry(0.5,0.5,0.5);
+        var coinMat = new THREE.MeshLambertMaterial({color: 0x01083F9});
+       var coin = new THREE.Mesh( coinGeo, coinMat);
+
+        coin.position.x = x;
+        coin.position.y = y;
+        coin.position.z = z;
+
+      scene.add(coin);
+        }
+
+
+        // import FBX
+
+
+
+
+
+//         function ImportAnimation(path,name,mixer,arreglo,x,y,z){
+//             loader = new THREE.FBXLoader();
+//             loader.load( path.toString(), function ( personaje ) {
+//             mixer = new THREE.AnimationMixer(personaje);
+//             arreglo.push(mixer);
+//             const clips = personaje.animations;
+//             const clip = THREE.AnimationClip.findByName(clips,name.toString());
+//             console.log(clip);
+//             const action = mixer.clipAction(clip);
+//             action.play();
+//             console.log(action);
+//             personaje.position.x = x;
+//             personaje.position.y = y;
+//             personaje.position.z = z;
+//             personaje.rotation.y  = 0;
+//             personaje.scale.setScalar(0.058);
+//             personaje.traverse(function (child){
+//          if(child.isMesh){
+//              child.castShadow = true;
+//              child.receiveShadow = true;
+//          }
+//      });
+// scene.add( personaje );
+
+//  });
+
+
+//     }
+}
+
+
+
+
+    window.onload = init;
+
+</script>
+
+
+</body>
+</html>

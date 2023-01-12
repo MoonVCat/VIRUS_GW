@@ -1,0 +1,23 @@
+.menu {
+  background: url("img/pausa_menu.png") ;
+  position: absolute;
+  top: 150px;
+  left: 480px;
+  height: 600px;
+  width: 40%;
+}
+
+.vidas {
+  position: absolute;
+  top: 70px;
+  left: 750px;
+}
+
+.gameO {
+  
+  position: absolute;
+  top: 160px;
+  left: 430px;
+  height: 550px;
+  width: 55%;
+}
