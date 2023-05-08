@@ -1,0 +1,28 @@
+newmtl initialShadingGroup
+illum 4
+Kd 0.20 0.20 0.20
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Sand_Diffuse.png
+Ni 1.00
+newmtl pCone2SG
+illum 4
+Kd 0.20 0.20 0.20
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd umbrella_lambert1_BaseColor.png
+Ni 1.00
+newmtl pCylinder7SG
+illum 4
+Kd 0.20 0.20 0.20
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd table_lambert1_BaseColor.png
+Ni 1.00
+newmtl pCylinder9SG
+illum 4
+Kd 0.20 0.20 0.20
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd chair_lambert1_BaseColor.png
+Ni 1.00

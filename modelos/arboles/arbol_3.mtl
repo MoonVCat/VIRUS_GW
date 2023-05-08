@@ -1,0 +1,177 @@
+newmtl birchSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd birch_texture.001.png
+Ni 1.00
+Ks 0.19 0.20 0.06
+Ns 0.00
+newmtl birchSG1
+illum 4
+Kd 0.72 0.66 0.69
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.18 0.17 0.17
+Ns 0.00
+newmtl birchSG2
+illum 4
+Kd 0.03 0.02 0.01
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.01 0.01 0.00
+Ns 0.00
+newmtl bonsaiFBXASC0322SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd bonsai_2_texture.png
+Ni 1.00
+Ks 0.20 0.20 0.20
+Ns 0.00
+newmtl bonsaiSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd bonsai_texture.001.png
+Ni 1.00
+Ks 0.03 0.08 0.01
+Ns 0.00
+newmtl bonsaiSG1
+illum 4
+Kd 0.23 0.08 0.06
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.06 0.02 0.01
+Ns 0.00
+newmtl cubeFBXASC032treeSG
+illum 4
+Kd 0.25 0.05 0.02
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.06 0.01 0.01
+Ns 0.00
+newmtl cubeFBXASC032treeSG1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd bircz_texture.png
+Ni 1.00
+Ks 0.20 0.08 0.01
+Ns 0.00
+newmtl darkFBXASC032pineSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd dark_pine_texture.png
+Ni 1.00
+Ks 0.05 0.08 0.02
+Ns 0.00
+newmtl darkFBXASC032pineSG1
+illum 4
+Kd 0.04 0.02 0.01
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.01 0.00 0.00
+Ns 0.00
+newmtl darkFBXASC032pineSG2
+illum 4
+Kd 0.03 0.08 0.02
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.01 0.02 0.00
+Ns 0.00
+newmtl dethFBXASC032pineSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd death_tree_texture.png
+Ni 1.00
+Ks 0.04 0.04 0.03
+Ns 23.00
+newmtl fruitFBXASC032cubeFBXASC032treeSG
+illum 4
+Kd 0.72 0.02 0.01
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.18 0.00 0.00
+Ns 0.00
+newmtl fruitFBXASC032cubeFBXASC032treeSG1
+illum 4
+Kd 0.08 0.03 0.02
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.02 0.01 0.01
+Ns 0.00
+newmtl fruitFBXASC032cubeFBXASC032treeSG2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd fruit_cube_tree_texture.003.png
+Ni 1.00
+Ks 0.14 0.20 0.05
+Ns 23.00
+newmtl pineFBXASC032SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd color_pine_tree.png
+Ni 1.00
+Ks 0.05 0.08 0.02
+Ns 0.00
+newmtl pineFBXASC032SG1
+illum 4
+Kd 0.13 0.06 0.03
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.03 0.01 0.01
+Ns 0.00
+newmtl pineFBXASC032SG2
+illum 4
+Kd 0.03 0.08 0.02
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.01 0.02 0.00
+Ns 0.00
+newmtl semiFBXASC032dethFBXASC032pineSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.05 0.24 0.12
+Ns 0.00
+newmtl skyFBXASC032treeSG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd sky_tree_texture.png
+Ni 1.00
+Ks 0.03 0.14 0.19
+Ns 0.00
+newmtl skyFBXASC032treeSG1
+illum 4
+Kd 0.14 0.07 0.06
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.04 0.02 0.01
+Ns 0.00

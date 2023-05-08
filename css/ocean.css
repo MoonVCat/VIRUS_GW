@@ -1,0 +1,79 @@
+body { 
+  background: url("../img/ocean.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align:center;
+}
+
+
+h1{
+	font-size:100px;	
+}
+
+.menu {
+  background: url("img/pausa_menu.png") ;
+  position: absolute;
+  top: 150px;
+  left: 480px;
+  height: 600px;
+  width: 40%;
+}
+
+
+.vidas {
+  position: absolute;
+  top: 40px;
+  left: 750px;
+}
+
+.vidas_segundo_player {
+  position: absolute;
+  top: 95px;
+  left: 750px;
+}
+
+.gameO {
+  
+  position: absolute;
+  top: 160px;
+  left: 430px;
+  height: 550px;
+  width: 55%;
+}
+
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.image1 {
+  position: relative;
+  top: 0;
+  left: 0;
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.image2 {
+  position: absolute;
+  top: 30px;
+  left: 660px;
+}
+
+.image3 {
+  position: absolute;
+  top: 150px;
+  left: 710px;
+}
+
+.image4 {
+  position: absolute;
+  top: 350px;
+  left: 710px;
+}
+
+

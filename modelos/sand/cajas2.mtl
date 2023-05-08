@@ -1,0 +1,212 @@
+newmtl Box004SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Cylinder006SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Line006SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Line007SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Object060SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Object062SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Plane051SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Plane075SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Plane076SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Plane081SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Plane086SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Plane087SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Sphere004SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Sphere012SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Sphere014SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Sphere020SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl coconutSG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl cubetas:pCylinder11SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd BucketUV.png
+Ni 1.00
+newmtl cubetas:pasted__pCylinder11SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd PinkBucketUV.png
+Ni 1.00
+newmtl lambert7SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree_leave_texture.png
+Ni 1.00
+newmtl lambert8SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree_trunk_texture.png
+Ni 1.00
+newmtl leave8SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree_leave_texture.png
+Ni 1.00
+newmtl pasted__Box006SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+map_Kd box_practice_orange_without_moss.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl roca:initialShadingGroup
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd rock6_lp_1001_BaseColor.png
+Ni 1.00
+newmtl roca:initialShadingGroup2
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd rock4_lp_1001_BaseColor.png
+Ni 1.00
+newmtl roca:initialShadingGroup4
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd rock3_lp_1001_BaseColor.png
+Ni 1.00
+newmtl roca:initialShadingGroup6
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd rock1_lp_1001_BaseColor.png
+Ni 1.00
+newmtl tree1SG
+illum 4
+Kd 0.30 0.30 0.30
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00

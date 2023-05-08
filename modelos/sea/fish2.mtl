@@ -1,0 +1,100 @@
+newmtl Box004SG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Fish2_MeshSG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd M_FishBigMouth_Fish2_Blinn_AlbedoTranspare.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 4.31
+newmtl FishSG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 4.31
+newmtl Hammerhead_Shark_MeshSG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Hammerhead_Shark_Hammerhead_Shark_Blinn_Al.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 4.31
+newmtl M_EA_TurtleFlatPlatformSG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 4.31
+newmtl Mantaray_MeshSG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Mantaray_Mantaray_Blinn_AlbedoTransparency.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 4.31
+newmtl Plane086SG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl Plane087SG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl coconutSG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl lambert7SG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree_leave_texture.png
+Ni 1.00
+newmtl lambert8SG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree_trunk_texture.png
+Ni 1.00
+newmtl leave8SG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree_leave_texture.png
+Ni 1.00
+newmtl tree1SG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00

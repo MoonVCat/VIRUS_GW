@@ -1,0 +1,66 @@
+newmtl Doctor:Body1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Doctor_Body_diffuse.png
+bump Doctor_Body_normal.png -bm 0
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks Doctor_Body_specular.png
+Ns 0.06
+newmtl Doctor:Bottom
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Doctor_Bottom_diffuse.png
+bump Doctor_Bottom_normal.png -bm 0
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks Doctor_Bottom_specular.png
+Ns 0.06
+newmtl Doctor:Hat
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Doctor_Hat_diffuse.png
+bump Doctor_Hat_normal.png -bm 0
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks Doctor_Hat_specular.png
+Ns 0.06
+newmtl Doctor:Mask
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Doctor_Mask_diffuse.png
+bump Doctor_Mask_normal.png -bm 0
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks Doctor_Mask_specular.png
+Ns 0.06
+newmtl Doctor:Shoes1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Doctor_Shoes_diffuse.png
+bump Doctor_Shoes_normal.png -bm 0
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks Doctor_Shoes_specular.png
+Ns 0.06
+newmtl Doctor:Top
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Doctor_Top_diffuse.png
+bump Doctor_Top_normal.png -bm 0
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks Doctor_Top_specular.png
+Ns 0.06

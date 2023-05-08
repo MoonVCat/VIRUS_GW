@@ -1,0 +1,2905 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Example 01.02 - First Scene</title>
+    <script type="text/javascript" src="../libreriaNueva/libreriasThree.js-master/Jquery.js"></script>
+    <script type="text/javascript" src="three.js"></script>
+    <script type="text/javascript" src="../three.js-master/examples/js/loaders/GLTFLoader.js"></script>
+    <script type="text/javascript" src="../libreriaNueva/libreriasThree.js-master/MTLLoader.js"></script>
+    <script type="text/javascript" src="../libreriaNueva/libreriasThree.js-master/FBXLoader.js"></script>
+    <script type="text/javascript" src="../libreriaNueva/libreriasThree.js-master/OBJLoader.js"></script>
+    <script type="text/javascript" src="../libreriaNueva/libreriasThree.js-master/inflate.min.js"></script>
+    <script type="text/javascript" src="../three.js-master/examples/js/controls/OrbitControls.js"></script>
+    <script type="text/javascript" src="libs/min.js"></script>
+    <script type="text/javascript" src="Herramientas/ControlesDeOrbita.js"></script>
+
+<script type="text/javascript">
+    var clock = new THREE.Clock();
+    var clockIA = new THREE.Clock();
+    clockIA.start();
+    var j = 0;
+    var enemigoR;
+    var enemigoR2;
+    var enemigoR3;
+    var enemigoR4;
+    var enemigoR5;
+    var enemigoR6;
+    var arregloDoc=[];
+    var arregloDoc2=[];
+    var arregloDoc3=[]; 
+    var arregloDoc4=[];
+    var arregloDoc5=[];
+    var arregloDoc6=[];
+    var mixerDocWalk;
+    var mixerDocWalk2;
+    var mixerDocWalk3;
+    var mixerDocWalk4;
+    var mixerDocWalk5;
+    var mixerDocWalk6;
+    var mixerDocWalkAttack;
+    var attackMesh;
+    var enemigoAttack;
+    var AnclaE1 = new THREE.Object3D();
+    var enemigo;
+    var enemigo2;
+    var enemigo3;
+    var enemigo4;
+    var enemigo5;
+    var enemigo6;
+    var player2Mat;
+    var puntaje = 0;
+    var objetosConColision = [];
+    var isWorldReady = [false,false];
+
+var frenoEnW = false;
+var frenoEnA = false;
+var frenoEnD = false;
+var frenoEnS = false;
+
+var freno2EnW = false;
+var freno2EnA = false;
+var freno2EnD = false;
+var freno2EnS = false;
+
+
+var raycaster;
+var rayos = [
+        new THREE.Vector3(0, 0, 1),
+        new THREE.Vector3(0, 0, -1),
+        new THREE.Vector3(1, 0, 0),
+        new THREE.Vector3(-1, 0, 0)
+    ];
+
+var keys = {};
+
+
+
+var vectorTemp;
+    
+
+    $(document).ready(function(){
+  
+    clock = new THREE.Clock();
+
+    // load models
+
+
+
+    
+
+
+  console.log("ready");
+
+
+
+    
+  });
+</script>
+
+
+
+
+
+    <style>
+        body {
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<!-- Div which will hold the Output -->
+<div id="WebGL-output">
+</div>
+
+
+<!-- Javascript code that runs our Three.js examples -->
+<script type="text/javascript">
+
+
+
+
+    var arregloVirus =[]   
+   
+
+var mixerVirus;   
+
+var material2;
+var matLevel
+
+let hemiLight,spotLight;
+
+
+var coin1;
+var coin2;
+var coin3;
+var coin4;
+var coin5;
+var coin6;
+var coin7;
+var coin8;
+var coin9;
+var coin10;
+var coin11;
+var coin12;
+var coin13;
+var coin14;
+var coin15;
+var coin16;
+var coin17;
+var coin18;
+var coin19;
+var coin20;
+var coin21;
+var coin22;
+var coin23;
+var coin24;
+var coin25;
+
+var coin26;
+var coin27;
+var coin28;
+var coin29;
+
+var coin30;
+var coin31;
+var coin32;
+var coin33; 
+
+var playerObj;
+var levelObj;
+
+var playerMat2;
+var playerObj2;
+
+
+
+
+
+    // once everything is loaded, we run our Three.js stuff.
+    function init() {
+
+document.addEventListener('keydown', onKeyDown);
+        document.addEventListener('keyup', onKeyUp);    
+        
+        const escenarioMat = new THREE.MeshLambertMaterial({color: 0xE05E42});
+       
+        var scene = new THREE.Scene();
+        // const loader2 = new THREE.CubeTextureLoader();
+        // loader2.setSize.setScalar(0.05);
+        // loader2.setPath("texturas/escenario/")
+        // const textureCube = loader2.load([
+        //     "sand.png",
+        //     "sand.png",
+        //     "sand.png",
+        //     "sand.png",
+        //     "sand.png",
+        //     "sand.png"
+
+        // ]);
+
+        // scene.background = textureCube;
+
+        var loader = new THREE.TextureLoader();
+var bgTexture = loader.load('texturas/escenario/ocean.png');
+scene.background = bgTexture;
+
+        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        
+        spotLight = new THREE.SpotLight(0xffa95c,4);
+        spotLight.castShadow = true;
+        spotLight.shadow.bias = -0.0001;
+        spotLight.shadow.mapSize.width = 1024*4;
+        spotLight.shadow.mapSize.height = 1024*4;
+        scene.add(spotLight);
+
+        hemiLight = new THREE.HemisphereLight(0xffeeb1,0x080820,4)
+        scene.add(hemiLight);
+
+    
+        var renderer = new THREE.WebGLRenderer();
+     
+        var controls = initControles(camera,renderer);
+        controls.update();
+  
+       
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.toneMapping = THREE.ReinhardToneMapping;
+        renderer.toneMappingExposure = 2.3;
+        document.getElementById("WebGL-output").appendChild(renderer.domElement);
+        // show axes in the screen
+
+        
+       
+        
+
+        camera.position.x = 10;
+        camera.position.y = 70;
+        camera.position.z = 0;
+        camera.lookAt(scene.position);
+
+
+raycaster = new THREE.Raycaster();
+
+var texture = new THREE.TextureLoader();
+            var baseMap = texture.load("texturas/escenario/aqua/Ground_Wet_Pebbles_001_SD/Ground_Wet_Pebbles_001_basecolor.jpg");
+            var heightMap = texture.load("texturas/escenario/aqua/Ground_Wet_Pebbles_001_SD/Ground_Wet_Pebbles_001_height.png");
+            var oclusionMap = texture.load("texturas/escenario/aqua/Ground_Wet_Pebbles_001_SD/Ground_Wet_Pebbles_001_ambientOcclusion.jpg");
+
+            var roughnessMapTxt = texture.load("texturas/escenario/aqua/Ground_Wet_Pebbles_001_SD/Ground_Wet_Pebbles_001_roughness.jpg");
+
+            var normalMapTxt = texture.load("texturas/escenario/aqua/Ground_Wet_Pebbles_001_SD/Ground_Wet_Pebbles_001_normal.jpg");
+
+            cubeMat = new THREE.MeshStandardMaterial(
+                {map: baseMap,
+                    normalMap : normalMapTxt,
+                    displacementMap: heightMap,
+                    displacementScale: 0.15,
+                    roughnessMap: roughnessMapTxt,
+                    roughness: 0.2,
+                    aoMap: oclusionMap});
+
+            loader = new THREE.FBXLoader();
+            loader.load( "modelos/cubee2.fbx", function ( personaje ) {
+            
+           
+            personaje.position.x = 0;
+            personaje.position.y = 0;
+            personaje.position.z = 0;
+            personaje.rotation.y  = 0;
+            personaje.scale.setScalar(2.15);
+            personaje.traverse(function (child){
+            if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+             child.material = cubeMat;
+         }
+     });
+       
+            
+
+            personaje.name ="escenario";
+            
+            
+            x = -18;
+            y = 0;
+            z = 26;
+
+
+          
+
+            // lateral izquierdo
+            for (var i = 0; i < 52 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x-5+i,y,z);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+            // lateral derecho
+            for (var i = 0; i < 52 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x-6+i,0,-z);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+            // superior central
+
+            for (var i = 0; i < 52 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x-6,y,z-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            } 
+            // inferior central
+
+
+             for (var i = 0; i < 53 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+45,y,z-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+
+            // contenido superior
+
+             for (var i = 0; i < 3 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+15,y,(z - 7 )-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 3 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+15,y,(z - 34 )-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 3 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+15-5,y,(z - 7 )-i+5);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 3 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+15-5,y,(z - 34 )-i-5);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 3 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+15,y,(z - 7 )-i-15);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 3 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+15,y,(z - 34 )-i-10);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            // parte inferior
+
+
+            // contenido inferior
+ for (var i = 0; i < 3 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+15,y,(z - 7 )-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+             for (var i = 0; i < 12 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(4+i,0,0);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 12 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(4+i,0,-12);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 12 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(4+i,0,12);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 38 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(10,0,12-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            
+
+           
+
+            
+                
+
+          
+    
+          
+         
+     
+
+
+const textureLoader2 = new THREE.TextureLoader();
+
+const baseMap2 = textureLoader2.load("texturas/escenario/aqua/metal/Tiles_Modern_002_basecolor.jpg");
+const normalMapTxt2 = textureLoader2.load("texturas/escenario/aqua/metal/Tiles_Modern_002_normal.jpg");
+const oclusionMap2 = textureLoader2.load("texturas/escenario/aqua/metal/Tiles_Modern_002_ambientOcclusion.jpg");
+const heightMap2 = textureLoader2.load("texturas/escenario/aqua/metal/Tiles_Modern_002_height.png");
+const metal = textureLoader2.load("texturas/escenario/aqua/metal/Tiles_Modern_002_metallic.jpg");
+
+
+secondCubeMat = new THREE.MeshStandardMaterial(
+                {map: baseMap2,
+                    normalMap : normalMapTxt2,
+                    displacementMap: heightMap2,
+                    displacementScale: 0.05,
+                    aoMap: oclusionMap2,
+                    metalnessMap : metal, 
+                    metalness : 0.25}
+                     );
+
+            
+       
+
+
+                for (var i = 0; i < 50 ; i++) {
+                    personaje.traverse(function(child) {
+                        child.material = secondCubeMat;
+
+                    });
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-3);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-4);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+             for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-5);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-6);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+             for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-7);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-8);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+             for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-9);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-10);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+              for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-11);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-12);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-13);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-14);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+             for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-15);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-16);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+ for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-17);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-18);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+              for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-19);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+                for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-20);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-21);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+             for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-22);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+                for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-23);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-24);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+
+             for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-25);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+                for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-26);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-27);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-28);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+                for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-29);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-30);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-31);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-32);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+                for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-33);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-34);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-35);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-36);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+                for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-37);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-38);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+             for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-39);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-40);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+                for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-41);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-42);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-43);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-44);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+                for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-45);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-46);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-47);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+                for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-48);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-49);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+             for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-50);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+                for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-51);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-52);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-2);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+             for (var i = 0; i < 45 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x+i,y-5,z-1);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+             for (var i = 0; i < 52 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x-1,y-5,z-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+             for (var i = 0; i < 52 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x-2,y-5,z-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 52 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x-3,y-5,z-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+             for (var i = 0; i < 52 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x-4,y-5,z-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+            for (var i = 0; i < 52 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x-5,y-5,z-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+            for (var i = 0; i < 52 ; i++) {
+                var cubeTemp = personaje.clone();
+                cubeTemp.position.set(x-6,y-5,z-i);
+                cubeTemp.name = "escenario";
+                scene.add(cubeTemp);
+                objetosConColision.push(cubeTemp);
+
+            }
+
+
+          
+
+
+   })
+
+
+// matLevel = new THREE.MeshLambertMaterial({color: 0x08b8c7a })
+// // OBJLoader("modelos/escenario/levelGraficas.obj",matLevel);
+// objLoader = new THREE.OBJLoader();
+// objLoader.load("modelos/escenario/level2Graficas.obj",function(model){
+//     model.traverse(function(child){
+//         child.receiveShadow = true;
+//         child.castShadow = true;
+//         child.material = matLevel;
+
+//         });
+   
+//     model.scale.setScalar(1.1);
+//     model.name = "escenario";
+//     scene.add(model);
+// objetosConColision.push(model);
+//  });
+
+playerMat = new THREE.MeshLambertMaterial({color: 0x02d572c});
+player2Mat = new THREE.MeshLambertMaterial({color:0x0E84B2C});
+coinMat = new THREE.MeshPhongMaterial({color: 0x0F7D011 , specular:0x08b8c7a});
+
+
+
+
+      
+
+
+
+loader = new THREE.FBXLoader();
+            loader.load( "modelos/Corona Virus (LOW).fbx", function ( personaje ) {
+            
+            personaje.scale.setScalar(0.040);
+            personaje.position.x = 0;
+            personaje.position.y = 0;
+            personaje.position.z = -5;
+            personaje.rotation.y  = 0;
+            personaje.traverse(function (child){
+            if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+           
+
+
+            personaje.name = "player";
+            scene.add(personaje);
+            playerObj = personaje;
+            
+       
+
+          
+         
+        })
+
+            loader = new THREE.FBXLoader();
+            loader.load( "modelos/Corona Virus Intersection (LOW).fbx", function ( personaje ) {
+            
+            personaje.scale.setScalar(0.040);
+            personaje.position.x = 0;
+            personaje.position.y = 0;
+            personaje.position.z = 5;
+            personaje.rotation.y  = 0;
+            personaje.traverse(function (child){
+            if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+           
+
+
+            personaje.name = "player2";
+            scene.add(personaje);
+            player2Obj = personaje;
+            
+       
+
+          
+         
+        })
+
+
+
+
+
+
+
+
+
+loader = new THREE.FBXLoader();
+            loader.load( "modelos/escenario/coin.fbx", function ( personaje ) {
+        
+           personaje.scale.setScalar(0.0030);
+            personaje.position.x = 0;
+            personaje.position.y = 0;
+            personaje.position.z = 0;
+            personaje.rotation.y = 0;
+            personaje.rotation.x = 1;
+            
+         
+            personaje.traverse(function (child){
+         if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+           
+           console.log(personaje);
+           personaje.name = "coin1";
+            coin1 = personaje;
+            coin2 = coin1.clone();
+            coin3 = coin1.clone();
+            coin4 = coin1.clone();
+            coin5 = coin1.clone();
+            coin6 = coin1.clone();
+            coin7 = coin1.clone();
+            coin8 = coin1.clone();
+             coin9 = coin1.clone();
+            coin10 = coin1.clone();
+            coin11 = coin1.clone();
+            coin12 = coin1.clone();
+
+            coin13 = coin1.clone();
+            coin14 = coin1.clone();
+            coin15 = coin1.clone();
+            coin16 = coin1.clone();
+
+            coin17 = coin1.clone();
+            coin18 = coin1.clone();
+            coin19 = coin1.clone();
+            coin20 = coin1.clone();
+
+            coin21 = coin1.clone();
+            coin22 = coin1.clone();
+            coin23 = coin1.clone();
+            coin24 = coin1.clone();
+
+            coin25 = coin1.clone();
+            coin26 = coin1.clone();
+            coin27 = coin1.clone();
+            coin28 = coin1.clone();
+
+            coin29 = coin1.clone();
+            coin30 = coin1.clone();
+            coin31 = coin1.clone();
+            coin32 = coin1.clone();
+
+            coin1.name = "coin1";
+            coin2.name = "coin2";
+            coin3.name = "coin3";
+            coin4.name = "coin4";
+            coin5.name = "coin5";
+            coin6.name = "coin6";
+           
+            coin7.name = "coin7";
+            coin8.name = "coin8";
+
+            coin9.name = "coin9";
+            coin10.name = "coin10";
+            coin11.name = "coin11";
+            coin12.name = "coin12";
+
+            coin13.name = "coin13";
+            coin14.name = "coin14";
+            coin15.name = "coin15";
+            coin16.name = "coin16";
+
+            coin17.name = "coin17";
+            coin18.name = "coin18";
+            coin19.name = "coin19";
+            coin20.name = "coin20";
+
+            coin21.name = "coin21";
+            coin22.name = "coin22";
+            coin23.name = "coin23";
+            coin24.name = "coin24";
+
+            coin25.name = "coin25";
+            coin26.name = "coin26";
+            coin27.name = "coin27";
+            coin28.name = "coin28";
+
+            coin29.name = "coin29";
+            coin30.name = "coin30";
+            coin31.name = "coin31";
+            coin32.name = "coin32";
+            
+
+            coin1.position.set(-12.75,0,15.375);
+            
+            coin2.position.set(-9.50,0,5.0);
+            coin3.position.set(-9.50,0,-5.0);
+            
+            coin4.position.set(-12.75,0,-15.375);
+            
+            coin5.position.set(7.75,0,7.375);
+            coin6.position.set(7.75,0,-7.375);
+            
+            coin7.position.set(1.50,0,-8.375);
+            coin8.position.set(1.50,0,8.375);
+
+//parte baja
+            coin9.position.set(12.75,0,7.375);
+            coin10.position.set(12.75,0,-7.375);
+            coin11.position.set(16.50,0,-15.375);
+            coin12.position.set(16.50,0,15.375);
+
+            coin13.position.set(-20,0,15.375);
+            coin14.position.set(20,0,-17);
+            coin15.position.set(20,0,17);
+            coin16.position.set(-20,0,-15.375);
+
+            coin17.position.set(-20,0,10.375);
+            coin18.position.set(20,0,-12);
+            coin19.position.set(20,0,12);
+            coin20.position.set(-20,0,-10.375);
+
+            coin21.position.set(-20,0,5.375);
+            coin22.position.set(20,0,-8);
+            coin23.position.set(20,0,8);
+            coin24.position.set(-20,0,-5.375);
+
+            coin25.position.set(-20,0,0);
+            coin26.position.set(20,0,-2);
+            coin27.position.set(20,0,2);
+            coin28.position.set(-20,0,0);
+            
+
+            coin29.position.set(7.75 , 0 , -18.375);
+            coin30.position.set(2 , 0 , -18.375);
+            coin31.position.set(2 , 0 , 18.375);
+            coin32.position.set(7.75,0,18.375);
+
+
+            scene.add(coin1);
+            scene.add(coin2);
+            scene.add(coin3);
+            scene.add(coin4);
+
+            scene.add(coin5);
+            scene.add(coin6);
+            scene.add(coin7);
+
+            scene.add(coin8);
+
+            scene.add(coin9);
+            scene.add(coin10);
+            scene.add(coin11);
+
+            scene.add(coin12);
+
+            scene.add(coin13);
+            scene.add(coin14);
+            scene.add(coin15);
+            scene.add(coin16);
+
+            scene.add(coin17);
+            scene.add(coin18);
+            scene.add(coin19);
+            scene.add(coin20);
+
+            scene.add(coin21);
+            scene.add(coin22);
+            scene.add(coin23);
+            scene.add(coin24);
+
+            scene.add(coin25);
+            scene.add(coin26);
+            scene.add(coin27);
+            scene.add(coin28);
+
+            scene.add(coin29);
+            scene.add(coin30);
+            scene.add(coin31);
+            scene.add(coin32);
+            
+            objetosConColision.push(coin1);
+            objetosConColision.push(coin2);
+            objetosConColision.push(coin3);
+            objetosConColision.push(coin4);
+
+            objetosConColision.push(coin5);
+            objetosConColision.push(coin6);
+            objetosConColision.push(coin7);
+            objetosConColision.push(coin8);
+
+            objetosConColision.push(coin9);
+            objetosConColision.push(coin10);
+            objetosConColision.push(coin11);
+            objetosConColision.push(coin12);
+
+            objetosConColision.push(coin13);
+            objetosConColision.push(coin14);
+            objetosConColision.push(coin15);
+            objetosConColision.push(coin16);
+
+            objetosConColision.push(coin17);
+            objetosConColision.push(coin18);
+            objetosConColision.push(coin19);
+            objetosConColision.push(coin20);
+
+            objetosConColision.push(coin21);
+            objetosConColision.push(coin22);
+            objetosConColision.push(coin23);
+            objetosConColision.push(coin24);
+
+            objetosConColision.push(coin25);
+            objetosConColision.push(coin26);
+            objetosConColision.push(coin27);
+            objetosConColision.push(coin28);
+
+            objetosConColision.push(coin29);
+            objetosConColision.push(coin30);
+            objetosConColision.push(coin31);
+            objetosConColision.push(coin32);
+
+
+
+
+            
+       
+            
+            
+
+            
+
+          
+         
+        })
+
+            loader = new THREE.FBXLoader();
+            loader.load( "modelos/doctores/animacionesExportadas/docAllAnimattack.fbx", function ( personaje ) {
+            mixerDocWalkAttack = new THREE.AnimationMixer(personaje);
+            arregloDoc.push(mixerDocWalkAttack);
+            const clips = personaje.animations;
+            const clip = THREE.AnimationClip.findByName(clips,"attack");
+            
+            const action = mixerDocWalkAttack.clipAction(clip);
+
+            action.play();
+           
+            personaje.scale.setScalar(0.023);
+            personaje.traverse(function (child){
+            if(child.isMesh){
+
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+        
+        
+
+            enemigoAttack = personaje;
+            console.log(enemigoAttack);
+            attackMesh = enemigoAttack;
+            
+       
+
+          
+         
+        })
+
+
+            
+
+
+
+
+loader = new THREE.FBXLoader();
+            loader.load( "modelos/doctores/animacionesExportadas/walkwalk.fbx", function ( personaje ) {
+            mixerDocWalk = new THREE.AnimationMixer(personaje);
+            arregloDoc.push(mixerDocWalk);
+            const clips = personaje.animations;
+            const clip = THREE.AnimationClip.findByName(clips,"walk");
+            
+            const action = mixerDocWalk.clipAction(clip);
+
+            action.play();
+           
+            personaje.position.x = -20;
+            personaje.position.y = 0;
+            personaje.position.z = 10;
+            personaje.rotation.y  = 0;
+            personaje.scale.setScalar(0.023);
+            personaje.traverse(function (child){
+            if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+           
+            enemigo = personaje;
+            enemigo.name = "enemigo1";
+
+
+            
+            scene.add(enemigo);
+            
+
+           
+
+            
+       
+
+          
+         
+        })
+
+
+
+
+            
+           
+           
+
+
+
+
+
+
+            loader = new THREE.FBXLoader();
+            loader.load( "modelos/doctores/animacionesExportadas/walkwalk.fbx", function ( personaje ) {
+            mixerDocWalk2 = new THREE.AnimationMixer(personaje);
+            arregloDoc2.push(mixerDocWalk2);
+            const clips = personaje.animations;
+            const clip = THREE.AnimationClip.findByName(clips,"walk");
+            
+            const action = mixerDocWalk2.clipAction(clip);
+
+            action.play();
+           
+            personaje.position.x = 0;
+            personaje.position.y = 0;
+            personaje.position.z = 5;
+            personaje.rotation.y  = 0;
+            personaje.scale.setScalar(0.023);
+            personaje.traverse(function (child){
+         if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+           
+            enemigo2 = personaje;
+            enemigo2.name = "enemigo2";
+            scene.add(enemigo2);
+           
+          
+         
+        })
+
+            loader = new THREE.FBXLoader();
+            loader.load( "modelos/doctores/animacionesExportadas/walkwalk.fbx", function ( personaje ) {
+            mixerDocWalk3 = new THREE.AnimationMixer(personaje);
+            arregloDoc3.push(mixerDocWalk3);
+            const clips = personaje.animations;
+            const clip = THREE.AnimationClip.findByName(clips,"walk");
+            
+            const action = mixerDocWalk3.clipAction(clip);
+
+            action.play();
+           
+            personaje.position.x = 0;
+            personaje.position.y = 0;
+            personaje.position.z = 10;
+            personaje.rotation.y  = 0;
+            personaje.scale.setScalar(0.023);
+            personaje.traverse(function (child){
+         if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+           
+            enemigo3 = personaje;
+            enemigo3.name = "enemigo3";
+            scene.add(enemigo3);
+           
+          
+         
+        })
+
+
+            loader = new THREE.FBXLoader();
+            loader.load( "modelos/doctores/animacionesExportadas/walkwalk.fbx", function ( personaje ) {
+            mixerDocWalk4 = new THREE.AnimationMixer(personaje);
+            arregloDoc4.push(mixerDocWalk4);
+            const clips = personaje.animations;
+            const clip = THREE.AnimationClip.findByName(clips,"walk");
+            
+            const action = mixerDocWalk4.clipAction(clip);
+
+            action.play();
+           
+            personaje.position.x = 12;
+            personaje.position.y = 0;
+            personaje.position.z = 10;
+            personaje.rotation.y  = 0;
+            personaje.scale.setScalar(0.023);
+            personaje.traverse(function (child){
+            if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+           
+            enemigo4 = personaje;
+            enemigo4.name = "enemigo4";
+
+
+            
+            scene.add(enemigo4);
+            
+       
+
+          
+         
+        })
+
+            loader = new THREE.FBXLoader();
+            loader.load( "modelos/doctores/animacionesExportadas/walkwalk.fbx", function ( personaje ) {
+            mixerDocWalk5 = new THREE.AnimationMixer(personaje);
+            arregloDoc5.push(mixerDocWalk5);
+            const clips = personaje.animations;
+            const clip = THREE.AnimationClip.findByName(clips,"walk");
+            
+            const action = mixerDocWalk5.clipAction(clip);
+
+            action.play();
+           
+            personaje.position.x = 12;
+            personaje.position.y = 0;
+            personaje.position.z = -10;
+            personaje.rotation.y  = 0;
+            personaje.scale.setScalar(0.023);
+            personaje.traverse(function (child){
+            if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+           
+            enemigo5 = personaje;
+            enemigo5.name = "enemigo5";
+
+
+            
+            scene.add(enemigo5);
+            
+       
+
+          
+         
+        })
+
+
+            loader = new THREE.FBXLoader();
+            loader.load( "modelos/doctores/animacionesExportadas/walkwalk.fbx", function ( personaje ) {
+            mixerDocWalk6 = new THREE.AnimationMixer(personaje);
+            arregloDoc6.push(mixerDocWalk6);
+            const clips = personaje.animations;
+            const clip = THREE.AnimationClip.findByName(clips,"walk");
+            
+            const action = mixerDocWalk6.clipAction(clip);
+
+            action.play();
+           
+            personaje.position.x = -20;
+            personaje.position.y = 0;
+            personaje.position.z = -10;
+            personaje.rotation.y  = 0;
+            personaje.scale.setScalar(0.023);
+            personaje.traverse(function (child){
+            if(child.isMesh){
+             child.castShadow = true;
+             child.receiveShadow = true;
+         }
+     });
+            
+           
+            enemigo6 = personaje;
+            enemigo6.name = "enemigo6";
+
+
+            
+            scene.add(enemigo6);
+            
+
+           
+
+            
+       
+
+          
+         
+        })
+
+
+
+isWorldReady[0] = true;
+
+
+
+
+
+
+// modelMat = new THREE.MTLLoader();
+// modelMat.load('modelos/doctores/doctorObj.mtl',function(material){
+//     material.preload();
+//     loader = new THREE.FBXLoader();
+//     loader.load("modelos/doctores/caminar.fbx",function(personaje){
+//         personaje.position.x = 0;
+//         personaje.position.y = 0;
+//         personaje.position.z = 0;
+//         personaje.scale.setScalar(0.021);
+
+//         personaje.traverse(function(child){
+//             child.castShadow = true;
+//             child.receiveShadow = true;
+//             child.material = material
+//         })
+//         scene.add(personaje);
+//     });
+// });
+// loaderFBX = new THREE.FBXLoader()
+// loaderFBX.load("modelos/doctores/animacionesExportadas/doctorFBX.fbx",function(personaje){
+//     personaje.scale.setScalar(0.058);
+    
+//     scene.add(personaje);
+// })
+
+
+// loader = new THREE.FBXLoader();
+// loader.load( "modelos/doctores/animacionesExportadas/docAllAnimattack.fbx", function ( personaje ) {
+//      mixer = new THREE.AnimationMixer(personaje);
+//      mixers.push(mixer);
+//      const clips = personaje.animations;
+//      const clip = THREE.AnimationClip.findByName(clips,"attack");
+//      console.log(clip);
+//     const action = mixer.clipAction(clip);
+//     action.play();
+//     console.log(action);
+//     personaje.position.x = 0;
+//      personaje.position.y = 0;
+//      personaje.position.z = 0;
+//      personaje.rotation.y  = 0;
+//      personaje.scale.setScalar(0.058);
+// personaje.traverse(function (child){
+//          if(child.isMesh){
+//              child.castShadow = true;
+//              child.receiveShadow = true;
+             
+
+            
+//          }
+//      });
+// scene.add( personaje );
+
+//  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                             // carga de modelos
+
+
+
+     //        loader = new THREE.FBXLoader();
+     //        loader.load( "modelos/doctores/animacionesExportadas/docAllAnimwalk.fbx", function ( personaje ) {
+     //        mixerDocWalk2 = new THREE.AnimationMixer(personaje);
+     //        arregloDoc2.push(mixerDocWalk2);
+     //        const clips = personaje.animations;
+     //        const clip = THREE.AnimationClip.findByName(clips,"walk");
+            
+     //        const action = mixerDocWalk2.clipAction(clip);
+
+     //        action.play();
+           
+     //        personaje.position.x = 0;
+     //        personaje.position.y = 0;
+     //        personaje.position.z = 10;
+     //        personaje.rotation.y  = 0;
+     //        personaje.scale.setScalar(0.023);
+     //        personaje.traverse(function (child){
+     //     if(child.isMesh){
+     //         child.castShadow = true;
+     //         child.receiveShadow = true;
+     //     }
+     // });
+            
+     //        scene.add( personaje );
+     //        enemigo2 = personaje;
+
+           
+     //    })
+
+
+
+            
+
+
+
+            
+
+
+
+
+
+                                            // colisiones
+
+
+
+
+// IA Manager
+function randomFunc(){
+     var random = (0, 4) 
+    random = Math.floor(Math.random() * (4 - 0)) + 0;
+    return random;
+}
+
+
+   function r(random){
+    // var random = (0, 5) 
+    // random = Math.floor(Math.random() * (5 - 0)) + 0;
+    // return random
+        // function getRandomRotation(){
+       
+    // enemigoR = random;
+    // enemigoR2 = random;
+
+        switch(random){
+        case 0:
+        var rotation = 0;
+        break;
+        case 1:
+        var rotation = 1.5;
+        break;
+        case 2:
+        var rotation = 3.3;
+        break;
+        case 3:
+        var rotation = 4.79;
+        break;
+    
+
+}
+
+
+    return rotation
+}
+
+
+function Avanzar(pRandom,pEnemigo){
+    var random = pRandom;
+
+    switch(random){
+        case 0:
+        pEnemigo.position.x += 0.041;
+        break;
+
+        case 1:
+        pEnemigo.position.z -=0.041;
+        break;
+
+        case 2:
+        pEnemigo.position.x -=0.041;
+        break;
+
+        case 3:
+        pEnemigo.position.z +=0.041;
+        break;
+
+            
+
+    }
+
+
+
+}
+
+
+
+
+
+function onKeyDown(event) {
+        keys[String.fromCharCode(event.keyCode)] = true;
+    }
+
+
+function onKeyUp(event) {
+        keys[String.fromCharCode(event.keyCode)] = false;
+    }
+
+
+ 
+
+     var enemigo = scene.getObjectByName("enemigo1");
+     var enemigo2 = scene.getObjectByName("enemigo2");
+     var enemigo3 = scene.getObjectByName("enemigo3");
+     var enemigoAttack = scene.getObjectByName("enemigoAttack");
+     var playerObj = scene.getObjectByName("player");
+     var player2Obj = scene.getObjectByName("player2");
+     
+     var coin1 = scene.getObjectByName("coin1");
+     var coin2 = scene.getObjectByName("coin2");
+     var coin3 = scene.getObjectByName("coin3");
+     var coin4 = scene.getObjectByName("coin4");
+
+     var coin5 = scene.getObjectByName("coin5");
+     var coin6 = scene.getObjectByName("coin6");
+     var coin7 = scene.getObjectByName("coin7");
+     var coin8 = scene.getObjectByName("coin8");
+
+     var coin9 = scene.getObjectByName("coin9");
+     var coin10 = scene.getObjectByName("coin10");
+     var coin11 = scene.getObjectByName("coin11");
+     var coin12 = scene.getObjectByName("coin12");
+
+     var coin13 = scene.getObjectByName("coin13");
+     var coin14 = scene.getObjectByName("coin14");
+     var coin15 = scene.getObjectByName("coin15");
+     var coin16 = scene.getObjectByName("coin16");
+
+     var coin17 = scene.getObjectByName("coin17");
+     var coin18 = scene.getObjectByName("coin18");
+     var coin19 = scene.getObjectByName("coin19");
+     var coin20 = scene.getObjectByName("coin20");
+
+     var coin21 = scene.getObjectByName("coin21");
+     var coin22 = scene.getObjectByName("coin22");
+     var coin23 = scene.getObjectByName("coin23");
+     var coin24 = scene.getObjectByName("coin24");
+
+     var coin25 = scene.getObjectByName("coin25");
+     var coin26 = scene.getObjectByName("coin26");
+     var coin27 = scene.getObjectByName("coin27");
+     var coin28 = scene.getObjectByName("coin28");
+
+     var coin29 = scene.getObjectByName("coin29");
+     var coin30 = scene.getObjectByName("coin30");
+     var coin31 = scene.getObjectByName("coin31");
+     var coin32 = scene.getObjectByName("coin32");
+
+     var pared = scene.getObjectByName("escenario");
+
+   
+
+     isWorldReady[1] = true;
+
+     
+        // render the scene
+        function render() {
+
+            if(isWorldReady[0]== true && isWorldReady[1] == true){
+
+
+           requestAnimationFrame(render);
+        tiempoDelta = clock.getDelta();
+        // console.log(playerObj.position);
+
+     
+
+        if (keys["A"]) {
+    
+            if(frenoEnA == false){
+                playerObj.position.z += 0.125;
+                frenoEnW = false;
+                frenoEnD = false;
+                frenoEnS = false;
+            }else {
+                
+            }
+            
+        } else if (keys["D"]) {
+            if(frenoEnD == false){
+                playerObj.position.z -= 0.125;
+                frenoEnW = false;
+                frenoEnA = false;
+                frenoEnS = false;
+
+            }else {
+                
+
+            }
+
+            
+        }
+        if (keys["W"]) {
+            if(frenoEnW == false){
+            playerObj.position.x -= 0.125;
+                frenoEnA = false;
+                frenoEnD = false;
+                frenoEnS = false;
+
+
+            }else {
+              
+            }
+
+           
+        } else if (keys["S"]) {
+            if(frenoEnS == false){
+            playerObj.position.x += 0.125;
+            frenoEnW = false;
+            frenoEnA = false;
+            frenoEnD = false;
+
+
+            }else {
+               
+            }
+            
+
+           
+        }if(keys["O"]){
+                console.log("o");
+                enemigoAttack.position.set(enemigo2.position.x,enemigo2.position.y,enemigo2.position.z);
+                enemigoAttack.rotation.set(0,enemigo2.rotation.y + 2.40,0);
+
+                scene.remove(enemigo2);
+                scene.add(enemigoAttack);
+
+            }
+
+        if(keys["P"]){
+            console.log("p");
+            enemigo2.position.set(enemigoAttack.position.x,enemigoAttack.position.y,enemigoAttack.position.z);
+            enemigo2.rotation.set(0,enemigoAttack.rotation.y,0);
+
+            scene.remove(enemigoAttack);
+            scene.add(enemigo2);
+        }
+
+        if (keys["I"]) {
+    
+            player2Obj.position.x -= 0.125;
+            
+        }
+        if (keys["L"]) {
+    
+            player2Obj.position.z -= 0.125;
+            
+        }
+        if (keys["K"]) {
+    
+            player2Obj.position.x += 0.125;
+            
+        }
+        if (keys["J"]) {
+    
+            player2Obj.position.z += 0.125;
+            
+        }
+
+            
+
+                
+                spotLight.position.set(
+                    camera.position.x + 10,
+                    camera.position.y +10,
+                    camera.position.z + 10);
+                if (arregloDoc6.length > 0){
+                mixerDocWalk.update(2.2 * tiempoDelta);
+                 mixerDocWalk2.update(2.2 * tiempoDelta);
+                 mixerDocWalk4.update(2.2 * tiempoDelta);
+                 mixerDocWalk5.update(2.2 * tiempoDelta);
+                 mixerDocWalk6.update(2.2 * tiempoDelta);
+                 mixerDocWalkAttack.update(1.70 * tiempoDelta);
+                 playerObj.rotation.y += THREE.Math.degToRad(20 * tiempoDelta);
+                 playerObj.rotation.x += THREE.Math.degToRad(28 * tiempoDelta);
+                 playerObj.rotation.z += THREE.Math.degToRad(30 * tiempoDelta);
+
+                  player2Obj.rotation.y -= THREE.Math.degToRad(20 * tiempoDelta);
+                 player2Obj.rotation.x -= THREE.Math.degToRad(28 * tiempoDelta);
+                 player2Obj.rotation.z -= THREE.Math.degToRad(30 * tiempoDelta);
+        //         if (playerObj.position.y < 10 ){
+        //     i = +2
+        //     }
+        //     else if(playerObj.position.y > -5){
+        //         i = -2
+        //     }
+        
+
+        // playerObj.position.y += i * tiempoDelta;
+
+                coin1.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin2.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+                coin3.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin4.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+
+                coin5.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin6.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+                coin7.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin8.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+
+                coin9.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin10.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+                coin11.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin12.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+
+                coin13.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin14.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+                coin15.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin16.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+
+                coin17.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin18.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+                coin19.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin20.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+
+                coin21.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin22.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+                coin23.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin24.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+
+                coin25.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin26.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+                coin27.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin28.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+
+                coin29.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin30.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+                coin31.rotation.z += THREE.Math.degToRad(850 * tiempoDelta);
+                coin32.rotation.z -= THREE.Math.degToRad(850 * tiempoDelta);
+                
+
+                for (var i = 0; i < rayos.length; i++) {
+
+                var rayo = rayos[i];
+
+                raycaster.set(playerObj.position, rayo);
+
+
+                var colision = raycaster.intersectObjects(objetosConColision, true);
+
+
+                if (colision.length > 0 && colision[0].distance < 2) {
+                    if(colision[0].object.parent.name == "coin1"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin1"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+                if(colision[0].object.parent.name == "coin2"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin2"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+                if(colision[0].object.parent.name == "coin3"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin3"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+               if(colision[0].object.parent.name == "coin4"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin4"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin5"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin5"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin6"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin6"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin7"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin7"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin8"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin8"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+                if(colision[0].object.parent.name == "coin9"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin9"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+                if(colision[0].object.parent.name == "coin10"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin10"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+                if(colision[0].object.parent.name == "coin11"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin11"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+                if(colision[0].object.parent.name == "coin12"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin12"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin13"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin13"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin14"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin14"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin15"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin15"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin16"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin16"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+                if(colision[0].object.parent.name == "coin17"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin17"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin18"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin18"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin19"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin19"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin20"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin20"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin21"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin21"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin22"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin22"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin23"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin23"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin24"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin24"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin25"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin25"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin26"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin26"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin27"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin27"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+                if(colision[0].object.parent.name == "coin28"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin28"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin29"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin29"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin30"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin30"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin31"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin31"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+                if(colision[0].object.parent.name == "coin32"){
+                    var delCoin = colision[0].object.parent;
+                    scene.remove(delCoin);
+                    for (var i = 0;  i < objetosConColision.length; i++) {
+                        if(objetosConColision[i].name == "coin32"){
+                        objetosConColision.splice(i, 1);
+                        puntaje += 1;
+
+
+                        }
+
+                        
+                        
+                    }
+                    console.log("chocamos con moneda terminamos colision con moneda");
+                    console.log("puntaje " + puntaje);
+                }
+
+
+
+                //D
+                if(colision[0].object.parent.name == "escenario" && rayo.z == -1){
+                    frenoEnW = false;
+                    frenoEnA = false;
+                    frenoEnS = false;
+                    frenoEnD = true;
+                    
+                    vectorTemp = rayo;
+                }else if(rayo != vectorTemp){
+                    frenoEnW = false;
+                    frenoEnA = false;
+                    frenoEnS = false;
+                    frenoEnD = false;
+                    vectorTemp = rayo;
+                }
+                //A
+                if(colision[0].object.parent.name == "escenario" && rayo.z == 1){
+                    frenoEnW = false;
+                    frenoEnA = true;
+                    frenoEnS = false;
+                    frenoEnD = false;
+                    vectorTemp = rayo;
+                }else if(rayo != vectorTemp){
+                    frenoEnW = false;
+                    frenoEnA = false;
+                    frenoEnS = false;
+                    frenoEnD = false;
+                    vectorTemp = rayo;
+                    
+                }
+                if(colision[0].object.parent.name == "escenario" && rayo.x == -1){
+                    frenoEnW = true;
+                    frenoEnA = false;
+                    frenoEnS = false;
+                    frenoEnD = false;
+                    vectorTemp = rayo;
+                }else if(rayo != vectorTemp){
+                    frenoEnW = false;
+                    frenoEnA = false;
+                    frenoEnS = false;
+                    frenoEnD = false;
+                    vectorTemp = rayo;
+                    
+                }
+                 if(colision[0].object.parent.name == "escenario" && rayo.x == 1){
+                    frenoEnW = false;
+                    frenoEnA = false;
+                    frenoEnS = true;
+                    frenoEnD = false;
+                    vectorTemp = rayo;
+                }else if(rayo != vectorTemp){
+                    frenoEnW = false;
+                    frenoEnA = false;
+                    frenoEnS = false;
+                    frenoEnD = false;
+                    vectorTemp = rayo;
+                    
+                }
+                
+              
+
+            
+            }
+        }
+
+                 
+
+                
+                // mixerDocWalk3.update(2.2 * tiempoDelta);
+                if (clockIA.getElapsedTime() > j){
+                   enemigoR = randomFunc();
+                    enemigoR2 = randomFunc();
+                    enemigoR3 = randomFunc();
+                    enemigoR4 = randomFunc();
+                    enemigoR5 = randomFunc();
+                    
+                    enemigo.rotation.y = r(enemigoR);
+                    enemigo2.rotation.y = r(enemigoR2);
+                    enemigo3.rotation.y = r(enemigoR3);
+                    enemigo4.rotation.y = r(enemigoR4);
+                    enemigo5.rotation.y = r(enemigoR5);
+                
+                    
+
+                    // enemigo3.rotation.y = r();
+                    
+                    j = j + 5;
+                    
+            }else{
+
+
+                 Avanzar(enemigoR,enemigo);
+                Avanzar(enemigoR2,enemigo2);
+                Avanzar(enemigoR3,enemigo3);
+                Avanzar(enemigoR4,enemigo4);
+                Avanzar(enemigoR5,enemigo5);
+        
+                 // Avanzar(enemigoR3,enemigo3);
+            }
+              
+
+
+            }
+
+            
+
+
+
+
+ renderer.render(scene, camera);
+
+              
+               
+                
+            }
+        }
+                
+            render();
+
+
+
+// document.addEventListener("keydown", onDocumentKeyDown, false);
+// function onDocumentKeyDown(event) {
+//     var keyCode = event.which;
+//     if (keyCode == 87) {
+//         playerObj.position.x -= 0.3;
+
+//         console.log("w");
+        
+        
+//     } else if (keyCode == 83) {
+//         console.log("s");
+        
+        
+//          playerObj.position.x += 0.3;
+//     } else if (keyCode == 65 && frenoEnA == false) {
+//         console.log("a");
+//         playerObj.position.z += 0.3; 
+//     } else if (keyCode == 68 && frenoEnZ == false) {
+//         console.log("d");
+//         playerObj.position.z -= 0.3;
+//     } else if (keyCode == 32) {
+        
+//     }
+// };
+
+
+
+
+
+
+
+
+
+        // crear objetos de juego.
+
+
+
+        function OBJLoader(path,material){
+objLoader = new THREE.OBJLoader();
+objLoader.load(path.toString(),function(model){
+    model.traverse(function(child){
+        child.receiveShadow = true;
+        child.castShadow = true;
+        child.material = material;
+
+        
+    });
+    model.scale.setScalar(1.5);
+    model.name = "escenario";
+    scene.add(model);
+        
+
+});
+
+            }
+        function player(x,y,z){
+            var playerGeo = new THREE.BoxGeometry(0.5,0.5,0.5);
+        var playerMat = new THREE.MeshLambertMaterial({color: 0x0E7ED11});
+       var player = new THREE.Mesh( playerGeo, playerMat);
+
+        player.position.x = x;
+        player.position.y = y;
+        player.position.z = z;
+
+        scene.add(player);
+        return player;
+        }
+
+       
+       
+
+
+        function moneda(x,y,z){
+
+       //  var coinGeo = new THREE.BoxGeometry(this.pA1,this.pA2,this.pA3);
+       // var coinMat = new THREE.MeshLambertMaterial({color: 0x01083F9});
+       // var coin = new THREE.Mesh( coinGeo, coinMat);
+
+       // coin.position.x = this.x;
+       // coin.position.y = this.y;
+       // coin.position.z = this.z;
+
+
+       var coinGeo = new THREE.BoxGeometry(0.5,0.5,0.5);
+        var coinMat = new THREE.MeshLambertMaterial({color: 0x01083F9});
+       var coin = new THREE.Mesh( coinGeo, coinMat);
+
+        coin.position.x = x;
+        coin.position.y = y;
+        coin.position.z = z;
+
+      scene.add(coin);
+        }
+
+
+        // import FBX
+
+
+
+
+
+//         function ImportAnimation(path,name,mixer,arreglo,x,y,z){
+//             loader = new THREE.FBXLoader();
+//             loader.load( path.toString(), function ( personaje ) {
+//             mixer = new THREE.AnimationMixer(personaje);
+//             arreglo.push(mixer);
+//             const clips = personaje.animations;
+//             const clip = THREE.AnimationClip.findByName(clips,name.toString());
+//             console.log(clip);
+//             const action = mixer.clipAction(clip);
+//             action.play();
+//             console.log(action);
+//             personaje.position.x = x;
+//             personaje.position.y = y;
+//             personaje.position.z = z;
+//             personaje.rotation.y  = 0;
+//             personaje.scale.setScalar(0.058);
+//             personaje.traverse(function (child){
+//          if(child.isMesh){
+//              child.castShadow = true;
+//              child.receiveShadow = true;
+//          }
+//      });
+// scene.add( personaje );
+
+//  });
+
+
+//     }
+}
+
+
+
+
+    window.onload = init;
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Virus</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/gamemenu.css"/>
+
+    </head>
+
+    <script type="text/javascript">
+        localStorage.setItem("musicaFondo",1);
+        localStorage.setItem("musicaFondoFX",1);
+
+    function ActivarMusicaFunc(){
+        var music = localStorage.getItem("musicaFondo");
+        if(music == 0){
+            localStorage.setItem("musicaFondo",1);
+        }
+    }
+
+    function DesactivarMusicaFunc(){
+        var music = localStorage.getItem("musicaFondo");
+        if(music == 1){
+            localStorage.setItem("musicaFondo",0);
+        }
+    } 
+
+      function ActivarMusicaFuncFX(){
+        var music = localStorage.getItem("musicaFondoFX");
+        if(music == 0){
+            localStorage.setItem("musicaFondoFX",1);
+        }
+    }
+
+    function DesactivarMusicaFuncFX(){
+        var music = localStorage.getItem("musicaFondoFX");
+        if(music == 1){
+            localStorage.setItem("musicaFondoFX",0);
+        }
+    } 
+        
+    
+    
+</script>
+<body>
+
+        <ul id="main-menu"></ul>
+        <br>
+        <img class="image1" width="600" src="img/optionsmenu.png"/>
+        <img class="image2" width="800" src="img/soundlvl.png"/>
+        <input class="image3" onclick="ActivarMusicaFunc()" type="image" width="600" src="img/onbtn.png"/>
+        <input class="image4" onclick="DesactivarMusicaFunc()" type="image" width="600" src="img/offbtn.png"/>
+        <img class="image5" width="800" src="img/mutemusic.png"/>
+        <input class="soundon" onclick="ActivarMusicaFuncFX()" type="image" width="600" src="img/onbtn.png"/>
+        <input class="soundoff" onclick="DesactivarMusicaFuncFX()" type="image" width="600" src="img/offbtn.png" />
+
+
+        
+        <br>
+        <br>
+        <br>
+        <br>
+        <form Name="" Method="" action="proyecto.html">
+             <input class="exit-1" type="image" width="280" src="img/exit_img.png"/>
+        </form>
+        
+        
+
+</body>
+
+<script src="js/libs/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
+</html>

@@ -1,0 +1,5 @@
+
+
+CREATE DATABASE php_login_database
+CREATE TABLE `php_login_database`.`users` ( `id` INT NOT NULL AUTO_INCREMENT , `edad` INT(11) NOT NULL , `email` VARCHAR(200) NOT NULL , `nombre` VARCHAR(200) NOT NULL , `password` VARCHAR(200) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `php_login_database`.`score` ( `score` INT(11) NOT NULL AUTO_INCREMENT , `users` VARCHAR(200) NOT NULL , PRIMARY KEY (`score`)) ENGINE = InnoDB;

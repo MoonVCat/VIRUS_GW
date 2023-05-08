@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Virus</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/gamemenu.css"/>
+
+    </head>
+<body>
+
+        <ul id="main-menu"></ul>
+        <img id="logo-img" width="400" src="img/virus_logo.png"/>
+        <br>
+        <br>
+        <form Name="" Method="" action="chooselvl.html">
+            <input class="play-img" type="image" width="240" src="img/play_img.png"/>
+        </form>
+
+        <form Name="" Method="" action="options.html">
+            <input class="config-img" type="image" width="350" src="img/config_img.png"/>
+        </form>
+        
+        <form Name="" Method="" action="score.php">
+            <input class="score-img" type="image" width="240" src="img/score_img.png"/>
+        </form>
+        
+        
+        
+</body>
+<script type="text/javascript">
+    var inicio = localStorage.getItem("jugadorNuevo");
+    if (inicio != 1 || null){
+        localStorage.setItem("jugadorNuevo",1);
+        localStorage.setItem("musicaFondo",1);
+        localStorage.setItem("musicaFondoFX",1);
+    }else {
+        
+    }
+
+    
+
+</script>
+<script src="js/libs/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</html>

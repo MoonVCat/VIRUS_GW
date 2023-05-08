@@ -1,0 +1,213 @@
+
+
+body { 
+  background: url("../img/bg.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align:center;
+}
+
+h1{
+	font-size:100px;	
+}
+
+.image2 {
+  position: absolute;
+  top: 20px;
+  left: 350px;
+}
+
+.image3 {
+  position: absolute;
+  top: 0px;
+  left: 750px;
+}
+
+.image4 {
+  position: absolute;
+  top: 0px;
+  left: 450px;
+}
+
+.image5 {
+  position: absolute;
+  top: 210px;
+  left: 350px;
+}
+
+.image6 {
+  position: absolute;
+  top: 50px;
+  left: 550px;
+}
+
+.image7 {
+  position: absolute;
+  top: 50px;
+  left: 550px;
+}
+
+.image8 {
+  position: absolute;
+  top: 330px;
+  left: 740px;
+}
+.image9 {
+  position: absolute;
+  top: 300px;
+  left: 660px;
+}
+.image10 {
+  position: absolute;
+  top: 300px;
+  left: 810px;
+}
+.image11 {
+  position: absolute;
+  top: 80px;
+  left: 740px;
+}
+.image12 {
+  position: absolute;
+  top: 80px;
+  left: 660px;
+}
+.image13 {
+  position: absolute;
+  top: 80px;
+  left: 810px;
+}
+.image14 {
+  position: absolute;
+  top: 590px;
+  left: 780px;
+}
+.image15 {
+  position: absolute;
+  top: 720px;
+  left: 780px;
+}
+
+.soundon {
+  position: absolute;
+  top: 290px;
+  left: 750px;
+}
+
+.soundoff {
+  position: absolute;
+  top: 290px;
+  left: 450px;
+}
+
+.exit-1{
+
+  position: absolute;
+  top: 640px;
+  left: 100px;
+}
+
+.exit-2{
+
+  position: absolute;
+  top: 640px;
+  left: 0px;
+}
+
+.nombre_player1 {
+  position: absolute;
+  top: 520px;
+  left: 830px;
+}
+
+.puntos_player1 {
+  position: absolute;
+  top: 520px;
+  left: 1130px;
+}
+
+.nombre_player2 {
+  position: absolute;
+  top: 730px;
+  left: 830px;
+}
+
+.puntos_player2 {
+  position: absolute;
+  top: 730px;
+  left: 1130px;
+}
+
+.nombre_player3 {
+  position: absolute;
+  top: 940px;
+  left: 830px;
+}
+
+.puntos_player3 {
+  position: absolute;
+  top: 940px;
+  left: 1130px;
+}
+
+.contenido {
+  position: absolute;
+  top: 350px;
+  left: 480px;
+}
+
+.textoUsername {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-70%, -70%);
+}
+
+.textoPuntaje {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(200%, -70%);
+}
+
+.salir_win{
+   position: absolute;
+  top: 750px;
+  left: 80px;
+}
+
+.share{
+   position: absolute;
+  top: 750px;
+  left: 1280px;
+}
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 33%;
+  padding: 0px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container{
+  width:  100%;
+  min-height: 100vh;
+  padding-left: 8%;
+  padding-right: 8%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 700px){
+
+}
+
